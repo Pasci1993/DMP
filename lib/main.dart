@@ -65,7 +65,18 @@ class _PageAccueil extends State<PageAccueil> {
           ],
         ),
       ),
+      bottomNavigationBar: NavigationBar(
+        destinations: [
+          NavigationDestination(icon: Icon(Icons.home), label: "Home"),
 
+          NavigationDestination(icon: Icon(Icons.favorite), label: "Favorites"),
+
+          NavigationDestination(
+            icon: Icon(Icons.notifications),
+            label: "Notifications",
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color.fromARGB(255, 255, 100, 139),
 
