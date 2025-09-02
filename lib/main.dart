@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:activite1/pages/page_redacteurs.dart';
 
 void main() {
   runApp(const MonAppli());
@@ -43,10 +44,6 @@ class _PageAccueil extends State<PageAccueil> {
         centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 255, 100, 139),
         title: Text("Magazine Infos", style: TextStyle(color: Colors.white)),
-        leading: IconButton(
-          icon: const Icon(Icons.menu, color: Colors.white),
-          onPressed: () {},
-        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.search, color: Colors.white),
@@ -54,12 +51,42 @@ class _PageAccueil extends State<PageAccueil> {
           ),
         ],
       ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(color: Colors.blue),
+              child: Text("Menu"),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text("Accueil"),
+              trailing: Icon(Icons.chevron_right),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.computer),
+              title: Text("Rédacteurs"),
+              trailing: Icon(Icons.chevron_right),
+              onTap: () {
+                Navigator.pop(context); // ferme le Drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const PageRedacteurs(),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Image(image: AssetImage("assets/images/magazineInfo.jpg")),
             PartieTitre(),
-            PatrtieTexte(),
+            PartieTexte(),
             PartieIcone(),
             PartieRubrique(),
           ],
@@ -68,9 +95,7 @@ class _PageAccueil extends State<PageAccueil> {
       bottomNavigationBar: NavigationBar(
         destinations: [
           NavigationDestination(icon: Icon(Icons.home), label: "Home"),
-
           NavigationDestination(icon: Icon(Icons.favorite), label: "Favorites"),
-
           NavigationDestination(
             icon: Icon(Icons.notifications),
             label: "Notifications",
@@ -79,7 +104,6 @@ class _PageAccueil extends State<PageAccueil> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color.fromARGB(255, 255, 100, 139),
-
         tooltip: 'Press the button',
         onPressed: () {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -90,13 +114,8 @@ class _PageAccueil extends State<PageAccueil> {
       ),
     );
   }
-
-  //child: const Text("Click"),
-  // ), // This trailing comma makes auto-formatting nicer for build methods.
-  //);
 }
 
-//}
 class PartieTitre extends StatelessWidget {
   const PartieTitre({super.key});
 
@@ -114,7 +133,6 @@ class PartieTitre extends StatelessWidget {
           ),
           Text(
             "Votre magazine numerique,votre source d'inspiration ",
-
             style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
           ),
         ],
@@ -123,15 +141,14 @@ class PartieTitre extends StatelessWidget {
   }
 }
 
-class PatrtieTexte extends StatelessWidget {
-  const PatrtieTexte({super.key});
+class PartieTexte extends StatelessWidget {
+  const PartieTexte({super.key});
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: const Text(
         "Magazine Infos est bien plus qu’un simple magazine d’informations. C’est une passerelle vers le monde d’informations, une source inestimable de connaissances et d’actualités soigneusement sélectionnées pour vous éclairer sur les enjeux mondiaux, la culture, la science, la sante et voir même le divertissement (les jeux). ",
-
         style: TextStyle(fontSize: 15, fontWeight: FontWeight.w800),
       ),
     );
